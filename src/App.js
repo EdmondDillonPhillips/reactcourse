@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Counter from './Counter';
 import CounterHooks from './CounterHooks';
 
+export const ThemeContext = React.createContext();
+
 function App() {
+  const [theme, setTheme] = useState('red')
   return (
     <>
-      <div>Counter</div>
-      <Counter initialCount={0}></Counter>
+    <ThemeContext.Provider value={{backgroundColor: theme}}>
+      
+      <Counter initialCount={0}/>
       <div>Counter Hooks</div>
       <CounterHooks initialCount={0}></CounterHooks>
+      <button onClick={()=> setTheme(prevTheme => {
+        return prevTheme === 'red' ? 'blue' : 'red'
+      })}>Toggle Theme</button>
+    </ThemeContext.Provider>
     </>
   );
 }
