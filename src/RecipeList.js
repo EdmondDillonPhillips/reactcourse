@@ -3,6 +3,7 @@ import Recipie from './Recipe'
 
 export default function RecipeList({recipies}) {
     return (
+        <>
         <div>
             {
                 recipies.map( recipie => {
@@ -10,6 +11,10 @@ export default function RecipeList({recipies}) {
                 })
             }
         </div>
+        <button>Add Recipie</button>
+        </>
+
+        
        
     )
 }
