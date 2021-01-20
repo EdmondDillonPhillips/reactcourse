@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import RecipieList from './RecipeList'
 import '../css/app.css'
 
 
 function App() {
+
+  const [recipies, setRecipie] = useState(sampleRecipies);
+
   return (
     <>
-    <RecipieList recipies={sampleRecipies}/>
+    <RecipieList recipies={recipies}/>
     </>
   );
 }
