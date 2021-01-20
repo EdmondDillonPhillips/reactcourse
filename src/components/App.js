@@ -1,14 +1,29 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../css/app.css';
 import RecipeList from './RecipeList';
 // import uuidv4 from 'uuid/v4';
 
 export const RecipeContext = React.createContext()
+const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
 
 
 function App() {
 
   const [recipes, setRecipes] = useState(sampleRecipes);
+
+  useEffect(()=>{
+    const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if(recipeJSON != null){
+      setRecipes(JSON.parse(recipeJSON))
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('Rendered')
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
+  }, [recipes])
+
+  
 
 const recipeContextValue = {
   handleRecipeAdd,
