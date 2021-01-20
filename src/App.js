@@ -3,7 +3,7 @@ import Counter from './Counter'
 
 function App() {
   return (
-   <Counter></Counter>
+   <Counter initialCount={4} ></Counter>
   );
 }
 
