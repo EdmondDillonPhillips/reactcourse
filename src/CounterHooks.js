@@ -1,12 +1,16 @@
 import React, {useState} from 'react';
 
 export default function CounterHooks({initialCount}){
-    const [state, setState] = useState({count: initialCount})
+    const [count, setCount] = useState(initialCount)
     return (
         <div>
-            <button onClick={()=>setState({count: state.count -1})}>-</button>
-            <span>{state.count}</span>
-            <button onClick={()=>setState({count: state.count +1})}>+</button>
+            <button onClick={
+                ()=>setCount(prevCount => prevCount - 1)
+                }>-</button>
+            <span>{count}</span>
+            <button onClick={
+                ()=>setCount(prevCount => prevCount + 1)
+                }>+</button>
             
         </div> 
     )
