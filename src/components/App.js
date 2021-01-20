@@ -5,7 +5,7 @@ import '../css/app.css'
 
 function App() {
 
-  const [recipies, setRecipie] = useState(sampleRecipies);
+  const [recipies, setRecipes] = useState(sampleRecipies);
 
   return (
     <>
