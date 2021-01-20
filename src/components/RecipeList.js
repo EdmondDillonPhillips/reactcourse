@@ -3,7 +3,7 @@ import Recipie from './Recipe'
 
 export default function RecipeList({recipies}) {
     return (
-        <>
+        <div className="recipe-list">
         <div>
             {
                 recipies.map( recipie => {
@@ -11,8 +11,11 @@ export default function RecipeList({recipies}) {
                 })
             }
         </div>
-        <button>Add Recipie</button>
-        </>
+        <div className="recipe-list__add-recipe-btn-contianer">
+            <button className="btn btn--primary">Add Recipie</button>
+        </div>
+        
+        </div>
 
         
        

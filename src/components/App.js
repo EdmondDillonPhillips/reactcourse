@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RecipieList from './RecipeList'
+import '../css/app.css'
 
 
 function App() {
