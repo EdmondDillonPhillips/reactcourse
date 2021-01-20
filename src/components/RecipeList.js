@@ -1,13 +1,15 @@
 import React from 'react'
 import Recipe from './Recipe'
 
-export default function RecipeList({recipes, handleRecipeAdd}) {
+export default function RecipeList(props) {
+
+    const {recipes, handleRecipeAdd, handleRecipeDelete} = props
     return (
         <div className="recipe-list">
         <div>
             {
                 recipes.map( recipe => {
-                    return <Recipe key={recipe.id} {...recipe}/>
+                    return <Recipe key={recipe.id} {...recipe} handleRecipeDelete={handleRecipeDelete}/>
                 })
             }
         </div>

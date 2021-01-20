@@ -8,17 +8,6 @@ function App() {
 
   const [recipes, setRecipes] = useState(sampleRecipes);
 
-  
-
-  return (
-    <>
-    <RecipeList 
-      recipes={recipes}
-      handleRecipeAdd={handleRecipeAdd}
-    />
-    </>
-  );
-
   function handleRecipeAdd(){
     const newRecipe = {
       id: uuidv4(),
@@ -34,7 +23,23 @@ function App() {
     }
   
     setRecipes([...recipes, newRecipe])
+  };
+
+  function handleRecipeDelete(id) {
+    setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
+
+  return (
+    <>
+    <RecipeList 
+      recipes={recipes}
+      handleRecipeAdd={handleRecipeAdd}
+      handleRecipeDelete={handleRecipeDelete}
+    />
+    </>
+  );
+
+  
 
 
 }
@@ -78,6 +83,6 @@ const sampleRecipes = [
       }
   ]
   }
-]
+];
 
 export default App;
