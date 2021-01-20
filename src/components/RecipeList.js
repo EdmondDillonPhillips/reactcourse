@@ -1,18 +1,23 @@
 import React from 'react'
-import Recipie from './Recipe'
+import Recipe from './Recipe'
 
-export default function RecipeList({recipies}) {
+export default function RecipeList({recipes, handleRecipeAdd}) {
     return (
         <div className="recipe-list">
         <div>
             {
-                recipies.map( recipie => {
-                    return <Recipie key={recipie.id} {...recipie}/>
+                recipes.map( recipe => {
+                    return <Recipe key={recipe.id} {...recipe}/>
                 })
             }
         </div>
         <div className="recipe-list__add-recipe-btn-contianer">
-            <button className="btn btn--primary">Add Recipie</button>
+            <button 
+                className="btn btn--primary"
+                onClick={handleRecipeAdd}
+            >
+                Add Recipe
+            </button>
         </div>
         
         </div>
