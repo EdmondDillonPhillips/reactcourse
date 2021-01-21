@@ -3,29 +3,32 @@ import '../css/app.css';
 import RecipeList from './RecipeList';
 import RecipeEdit from './RecipeEdit';
 
-export const RecipeContext = React.createContext()
-const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
+export const RecipeContext = React.createContext();
+const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes';
 
 
 function App() {
 
+  const [selectedRecipeId, setSelectedRecipeId] = useState();
   const [recipes, setRecipes] = useState(sampleRecipes);
+  const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
   const recipeContextValue = {
     handleRecipeAdd,
-    handleRecipeDelete
-  }
+    handleRecipeDelete,
+    handleRecipeSelect
+  };
 
   useEffect(()=>{
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
     if(recipeJSON != null){
       setRecipes(JSON.parse(recipeJSON))
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     console.log('Rendered')
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
-  }, [recipes])
+  }, [recipes]);
 
   function handleRecipeAdd(){
     const newRecipe = {
@@ -48,12 +51,16 @@ function App() {
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
+  function handleRecipeSelect(id){
+    setSelectedRecipeId(id)
+  }
+
   return (
     <RecipeContext.Provider value={recipeContextValue}>
     <RecipeList 
       recipes={recipes}
     />
-    <RecipeEdit/>
+    {selectedRecipe && <RecipeEdit recipe={selectedRecipe}/>}
     </RecipeContext.Provider>
   );
 
@@ -68,7 +75,7 @@ const sampleRecipes = [
     name: 'Plain Chicken',
     servings: 3,
     cookTime: '1:45',
-    instructions: '1. Put salt on Chicken\n 2. Put Chicken in oven\n 3. Eat chicken',
+    instructions: '1. Put salt on Chicken\n2. Put Chicken in oven\n3. Eat chicken',
     ingredients: [
       {
       id: 1,
@@ -87,7 +94,7 @@ const sampleRecipes = [
     name: 'Plain Pork',
     servings: 4,
     cookTime: '2:55',
-    instructions: '1. Put paprika on Pork\n 2. Put Pork in oven\n 3. Eat Pork',
+    instructions: '1. Put paprika on Pork\n2. Put Pork in oven\n3. Eat Pork',
     ingredients: [
       {
       id: 1,

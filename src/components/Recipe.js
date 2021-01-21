@@ -5,7 +5,7 @@ import {RecipeContext} from './App'
 export default function Recipe(props) {
 
     const {id, name, cookTime, servings, instructions, ingredients} = props;
-    const {handleRecipeDelete} = useContext(RecipeContext)
+    const {handleRecipeDelete, handleRecipeSelect} = useContext(RecipeContext)
     useEffect(() => {
         console.log('render')
         return ()=>{
@@ -17,7 +17,12 @@ export default function Recipe(props) {
             <div className="recipe__header">
                 <h3 className="recipe__title">{name}</h3>
                 <div>
-                    <button className="btn btn--primary mr-1">Edit</button>
+                    <button 
+                    className="btn btn--primary mr-1"
+                    onClick={()=> handleRecipeSelect(id)}
+                    >
+                        Edit
+                    </button>
                     <button 
                     className="btn btn--danger"
                     onClick={()=>handleRecipeDelete(id)}
