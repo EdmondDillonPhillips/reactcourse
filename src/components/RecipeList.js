@@ -13,8 +13,7 @@ export default function RecipeList(props) {
             {
                 recipes.map( recipe => {
                     return <Recipe key={recipe.id} {...recipe}/>
-                })
-            
+                })            
             }
         </div>
         <div className="recipe-list__add-recipe-btn-contianer">
